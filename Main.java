@@ -42,6 +42,7 @@ public class Main {
             detector.addMapFormat(new DatMapFormat());
             detector.addMapFormat(new MCSharpMapFormat());
             detector.addMapFormat(new RUMMapFormat());
+            detector.addMapFormat(new FCraftMapFormat());
             try {
                 for(int i = 0;i < args.length;i++) {
                     String arg;
@@ -107,7 +108,7 @@ public class Main {
             } catch(FileNotFoundException e) {
                 throw new MapConverterException("Input file not found.", e);
             } catch(NotImplementedException e) {
-                throw new MapConverterException("Converting from that map format is not supported", e);
+                throw new MapConverterException("Converting from that map format is not supported: " + e.getMessage(), e);
             } catch(MapFormatException e) {
                 throw new MapConverterException("Input map file corrupt: " + e.getMessage(), e);
             } catch(IOException e) {
@@ -123,7 +124,7 @@ public class Main {
             try {
                 outMap.save(outFile);
             } catch(NotImplementedException e) {
-                throw new MapConverterException("Converting to that map format is not supported", e);
+                throw new MapConverterException("Converting to that map format is not supported: " + e.getMessage(), e);
             } catch(IOException e) {
                 throw new MapConverterException("Error saving map file: " + e.getMessage(), e);
             }
