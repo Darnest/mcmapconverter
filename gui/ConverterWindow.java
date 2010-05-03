@@ -113,6 +113,7 @@ public class ConverterWindow extends JFrame implements ConverterUI {
                     String format;
                     int selectedIndex;
 
+                    resetMessages();
                     selectedIndex = inputFormatSelector.getSelectedIndex();
 
                     if(selectedIndex == 0) {
@@ -131,6 +132,7 @@ public class ConverterWindow extends JFrame implements ConverterUI {
                     String format;
                     int selectedIndex;
 
+                    resetMessages();
                     selectedIndex = outputFormatSelector.getSelectedIndex();
                     
                     if(selectedIndex == 0) {
@@ -154,6 +156,7 @@ public class ConverterWindow extends JFrame implements ConverterUI {
                         File file;
                         javax.swing.filechooser.FileFilter fileFilter;
 
+                        resetMessages();
                         fileFilter = minecraftFileChooser.getFileFilter();
                         if(fileFilter instanceof MinecraftMapFormatFileFilter) {
                             MapFormat mapFormat;
@@ -189,6 +192,7 @@ public class ConverterWindow extends JFrame implements ConverterUI {
                         File file;
                         javax.swing.filechooser.FileFilter fileFilter;
 
+                        resetMessages();
                         fileFilter = minecraftFileChooser.getFileFilter();
                         if(fileFilter instanceof MinecraftMapFormatFileFilter) {
                             MapFormat mapFormat;
@@ -202,6 +206,8 @@ public class ConverterWindow extends JFrame implements ConverterUI {
                                 String optionName = formatSelections[i];
                                 if(optionName.equals(name))
                                     inputFormatSelector.setSelectedIndex(i);
+                                else
+                                    System.out.println(optionName + " != " + name);
                             }
                         }
 
@@ -217,6 +223,7 @@ public class ConverterWindow extends JFrame implements ConverterUI {
         convertButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if(e.getSource() == convertButton) {
+                    resetMessages();
                     converter.convert(top);
                 }
             }
@@ -230,7 +237,7 @@ public class ConverterWindow extends JFrame implements ConverterUI {
         constraints.weightx = 0.5;
         constraints.gridx = 1;
         constraints.gridy = 2;
-        displayPane.add(console);
+        displayPane.add(console, constraints);
 
         inputPanel.add(inputButton);
 
@@ -316,6 +323,15 @@ public class ConverterWindow extends JFrame implements ConverterUI {
     public void displaySuccess() {
         console.setText("Map converted");
         console.setForeground(Color.GREEN);
+        refresh();
+    }
+
+    private void resetMessages() {
+        inputFileError.setText("");
+        outputFileError.setText("");
+        inputFormatError.setText("");
+        outputFormatError.setText("");
+        console.setText("");
         refresh();
     }
 
