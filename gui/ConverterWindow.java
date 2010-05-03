@@ -322,7 +322,7 @@ public class ConverterWindow extends JFrame implements ConverterUI {
 
     public void displaySuccess() {
         console.setText("Map converted");
-        console.setForeground(Color.GREEN);
+        console.setForeground(new Color(0, 100, 0));
         refresh();
     }
 

@@ -83,7 +83,7 @@ public class Converter {
         if(outputFormat == null) {
             conversionOutputFormat = detectOutputFileMapFormat();
             if(conversionOutputFormat == null) {
-                ui.displayInputFormatError("Could not detect output format, please specify one manually" );
+                ui.displayOutputFormatError("Could not detect output format, please specify one manually" );
             }
         } else
             conversionOutputFormat = outputFormat;

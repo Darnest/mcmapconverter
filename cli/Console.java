@@ -18,7 +18,7 @@ public class Console implements ConverterUI {
     private void parseArgs(String[] args) {
         String inFormatName = null, outFormatName = null, inFileName = null, outFileName = null;
         File outFile, inFile;
-        MapFormat inFormat, outFormat;
+        MapFormat inFormat = null, outFormat = null;
         
         try {
             try {
@@ -59,13 +59,17 @@ public class Console implements ConverterUI {
 
         inFile = new File(inFileName);
         outFile = new File(outFileName);
-        inFormat = converter.getMapFormat(inFormatName);
-        outFormat = converter.getMapFormat(outFormatName);
+        if(inFormatName != null)
+            inFormat = converter.getMapFormat(inFormatName);
+        if(outFormatName != null)
+            outFormat = converter.getMapFormat(outFormatName);
 
         converter.setInputFile(inFile);
         converter.setOutputFile(outFile);
-        converter.setInputFormat(inFormat);
-        converter.setOutputFormat(outFormat);
+        if(inFormat != null)
+            converter.setInputFormat(inFormat);
+        if(outFormat != null)
+            converter.setOutputFormat(outFormat);
     }
 
     private void printHelp(PrintStream out) {
