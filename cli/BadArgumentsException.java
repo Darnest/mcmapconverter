@@ -1,8 +1,6 @@
 package mcmapconverter.cli;
 
-import mcmapconverter.MapConverterException;
-
-public class BadArgumentsException extends MapConverterException {
+public class BadArgumentsException extends Exception {
     public BadArgumentsException(String s) {
         super(s);
     }
